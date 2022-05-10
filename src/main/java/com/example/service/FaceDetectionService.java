@@ -52,7 +52,7 @@ public class FaceDetectionService {
     public FaceDetectionService detectFaceApi(byte[] fileBytes) throws IOException {
         faceEntities=new ArrayList<>();
         MatOfRect faceDetections = new MatOfRect();
-        CascadeClassifier faceDetector = new CascadeClassifier("./src/main/resources/haarcascades/haarcascade_frontalface_alt.xml");
+        CascadeClassifier faceDetector = new CascadeClassifier("./resources/haarcascades/haarcascade_frontalface_alt.xml");
 
         image = Imgcodecs.imdecode(new MatOfByte(fileBytes), Imgcodecs.IMREAD_UNCHANGED);
         faceDetector.detectMultiScale(image, faceDetections);
