@@ -2,8 +2,8 @@ micronaut:
   application:
     name: backend
   server:
-    cors:
-      enabled: true
+      cors:
+        enabled: true
 netty:
   default:
     allocator:
