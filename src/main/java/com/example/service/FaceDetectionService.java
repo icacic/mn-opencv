@@ -18,12 +18,15 @@ import org.opencv.imgcodecs.Imgcodecs;
 import org.opencv.imgproc.Imgproc;
 import org.opencv.objdetect.CascadeClassifier;
 import org.opencv.objdetect.Objdetect;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import jakarta.inject.Singleton;
 
 @Singleton
 public class FaceDetectionService {
 
+    private final static Logger logger = LoggerFactory.getLogger(FaceDetectionService.class);
     private List<FaceModel> faceEntities;
     private Mat image;
     
@@ -57,7 +60,7 @@ public class FaceDetectionService {
         image = Imgcodecs.imdecode(new MatOfByte(fileBytes), Imgcodecs.IMREAD_UNCHANGED);
         faceDetector.detectMultiScale(image, faceDetections);
 
-        System.out.println(String.format("Detected %s faces", faceDetections.toArray().length));
+        logger.info(String.format("Detected %s faces", faceDetections.toArray().length));
 
         for (Rect rect : faceDetections.toArray()) {
             faceEntities.add(new FaceModel(rect.x, rect.y, rect.width, rect.height, 0));
