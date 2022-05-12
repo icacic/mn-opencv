@@ -31,12 +31,12 @@ public class FaceDetectionService {
     private Mat image;
     
     public void detectFace() {
-        Mat loadedImage = Imgcodecs.imread("./resources/images/legends.jpg");
+        Mat loadedImage = Imgcodecs.imread("./src/main/resources/images/legends.jpg");
         
         MatOfRect facesDetected = new MatOfRect();
         CascadeClassifier cascadeClassifier = new CascadeClassifier();
         int minFaceSize = Math.round(loadedImage.rows() * 0.1f);
-        cascadeClassifier.load("./resources/haarcascades/haarcascade_frontalface_alt.xml");
+        cascadeClassifier.load("./src/main/resources/haarcascades/haarcascade_frontalface_alt.xml");
         cascadeClassifier.detectMultiScale(loadedImage,
                 facesDetected,
                 1.1,
@@ -49,13 +49,13 @@ public class FaceDetectionService {
         for (Rect face : facesArray) {
             Imgproc.rectangle(loadedImage, face.tl(), face.br(), new Scalar(0, 0, 255), 3);
         }
-        Imgcodecs.imwrite("./resources/images/faces.jpg", loadedImage);
+        Imgcodecs.imwrite("./src/main/resources/images/faces.jpg", loadedImage);
     }
 
     public FaceDetectionService detectFaceApi(byte[] fileBytes) throws IOException {
         faceEntities=new ArrayList<>();
         MatOfRect faceDetections = new MatOfRect();
-        CascadeClassifier faceDetector = new CascadeClassifier("./resources/haarcascades/haarcascade_frontalface_alt.xml");
+        CascadeClassifier faceDetector = new CascadeClassifier("./src/main/resources/haarcascades/haarcascade_frontalface_alt.xml");
 
         image = Imgcodecs.imdecode(new MatOfByte(fileBytes), Imgcodecs.IMREAD_UNCHANGED);
         faceDetector.detectMultiScale(image, faceDetections);

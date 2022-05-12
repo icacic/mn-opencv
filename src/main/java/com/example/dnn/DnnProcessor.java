@@ -16,8 +16,8 @@ import java.util.List;
 public class DnnProcessor {
     private final static Logger logger = LoggerFactory.getLogger(DnnProcessor.class);
     private Net net;
-    private final String proto = "./resources/models/MobileNetSSD_deploy.prototxt";
-    private final String model = "./resources/models/MobileNetSSD_deploy.caffemodel";
+    private final String proto = "./src/main/resources/models/MobileNetSSD_deploy.prototxt";
+    private final String model = "./src/main/resources/models/MobileNetSSD_deploy.caffemodel";
 
     private final String[] classNames = {"background",
             "aeroplane", "bicycle", "bird", "boat",
